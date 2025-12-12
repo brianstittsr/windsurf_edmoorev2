@@ -2,21 +2,18 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import LanguageSwitcher from './LanguageSwitcher';
-import { useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const t = useTranslations('nav');
 
   const navLinks = [
-    { href: '/about', label: t('about') },
-    { href: '/books', label: t('books') },
-    { href: '/tools', label: t('tools') },
-    { href: '/training', label: t('training') },
-    { href: '/speaking', label: t('speaking') },
-    { href: '/contact', label: t('contact') },
+    { href: '/about', label: 'About' },
+    { href: '/books', label: 'Books' },
+    { href: '/tools', label: 'Tools' },
+    { href: '/training', label: 'Training' },
+    { href: '/speaking', label: 'Speaking' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -39,11 +36,6 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-
-          {/* Language Switcher - Desktop */}
-          <div className="hidden md:block">
-            <LanguageSwitcher />
-          </div>
 
           {/* Mobile menu button */}
           <button
@@ -69,9 +61,6 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4 border-t border-gray-200 mt-2">
-              <LanguageSwitcher />
-            </div>
           </nav>
         </div>
       )}
