@@ -1,0 +1,23 @@
+# robots.txt for edmundmoore.com
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin, auth, and API pages
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /auth/signin
+Disallow: /auth/signup
+
+# Allow specific tools and public pages
+Allow: /tools/
+Allow: /books/
+Allow: /challenge
+Allow: /philosophy-quiz
+
+# Sitemap location
+Sitemap: https://edmundmoore.com/sitemap.xml
+
+# Crawl delay (optional, for politeness)
+Crawl-delay: 1

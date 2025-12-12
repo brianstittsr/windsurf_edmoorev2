@@ -9,6 +9,33 @@ export default function ToolsPage() {
   const tools = [
     {
       id: 1,
+      title: 'Net Worth Calculator',
+      description: 'Calculate your net worth by tracking assets and liabilities. Visualize your financial position and track progress over time.',
+      icon: 'calculator',
+      link: '/tools/net-worth-calculator',
+      isPremium: false,
+      isNew: true,
+    },
+    {
+      id: 2,
+      title: 'Strategic Decision Evaluator',
+      description: 'Evaluate whether to act now or embrace strategic patience using Dr. Moore\'s decision framework.',
+      icon: 'chart-line',
+      link: '/tools/strategic-decision-evaluator',
+      isPremium: false,
+      isNew: true,
+    },
+    {
+      id: 3,
+      title: 'Investment Growth Forecaster',
+      description: 'Visualize compound interest and see how patience and consistent contributions build wealth over time.',
+      icon: 'chart-pie',
+      link: '/tools/investment-growth-forecaster',
+      isPremium: false,
+      isNew: true,
+    },
+    {
+      id: 4,
       title: 'Budget Calculator',
       description: 'A comprehensive tool to help you create and manage your monthly budget, track expenses, and identify areas for improvement.',
       icon: 'calculator',
@@ -16,7 +43,7 @@ export default function ToolsPage() {
       isPremium: false,
     },
     {
-      id: 2,
+      id: 5,
       title: 'Debt Reduction Planner',
       description: 'Strategically plan your debt payoff journey with this interactive tool that helps you prioritize debts and save on interest.',
       icon: 'chart-line',
@@ -24,7 +51,7 @@ export default function ToolsPage() {
       isPremium: false,
     },
     {
-      id: 3,
+      id: 6,
       title: 'Retirement Calculator',
       description: 'Calculate how much you need to save for retirement and create a personalized plan to reach your retirement goals.',
       icon: 'piggy-bank',
@@ -32,7 +59,7 @@ export default function ToolsPage() {
       isPremium: false,
     },
     {
-      id: 4,
+      id: 7,
       title: 'Investment Portfolio Analyzer',
       description: 'Analyze your investment portfolio for diversification, risk assessment, and potential returns based on historical data.',
       icon: 'chart-pie',
@@ -40,7 +67,7 @@ export default function ToolsPage() {
       isPremium: true,
     },
     {
-      id: 5,
+      id: 8,
       title: 'Legacy Planning Toolkit',
       description: 'Comprehensive resources for creating a financial legacy plan, including estate planning documents and wealth transfer strategies.',
       icon: 'file-contract',
@@ -48,12 +75,22 @@ export default function ToolsPage() {
       isPremium: true,
     },
     {
-      id: 6,
+      id: 9,
       title: 'Financial Goal Tracker',
-      description: 'Set, track, and achieve your financial goals with this interactive tool that helps you stay motivated and accountable.',
+      description: 'Set, track, and achieve your financial goals with Dr. Moore\'s strategic planning framework. Track progress toward financial freedom.',
       icon: 'bullseye',
-      link: '#',
+      link: '/tools/financial-goal-tracker',
       isPremium: false,
+      isNew: true,
+    },
+    {
+      id: 10,
+      title: 'Emergency Fund Planner',
+      description: 'Build a robust emergency fund covering up to one year of expenses. Prioritize liquidity and avoid high-interest debt.',
+      icon: 'shield',
+      link: '/tools/emergency-fund-planner',
+      isPremium: false,
+      isNew: true,
     },
   ];
 
@@ -145,7 +182,12 @@ export default function ToolsPage() {
                   )}
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2">{tool.title}</h3>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-xl font-semibold">{tool.title}</h3>
+                {tool.isNew && (
+                  <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">NEW</span>
+                )}
+              </div>
               <p className="text-gray-600 mb-4">{tool.description}</p>
               <div className="flex justify-between items-center">
                 {tool.isPremium ? (

@@ -96,6 +96,12 @@ export default function BooksPage() {
                 Buy Now
               </a>
               <a 
+                href="/books/companion" 
+                className="bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition duration-300"
+              >
+                Digital Companion
+              </a>
+              <a 
                 href="#" 
                 className="bg-transparent border border-blue-700 text-blue-700 px-6 py-3 rounded-md font-medium hover:bg-blue-50 transition duration-300"
               >

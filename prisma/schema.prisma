@@ -1,0 +1,145 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  quizResults   QuizResult[]
+  netWorthData  NetWorthData[]
+  decisions     Decision[]
+  investments   Investment[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Quiz Results
+model QuizResult {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  answers     String   // JSON string of answers
+  personality String   // patienceMaster, balancedMaker, actionAchiever
+  actionScore Int
+  balancedScore Int
+  patienceScore Int
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+}
+
+// Net Worth Calculator Data
+model NetWorthData {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  assets    String   // JSON string of assets array
+  liabilities String // JSON string of liabilities array
+  totalAssets Float
+  totalLiabilities Float
+  netWorth  Float
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+// Strategic Decisions
+model Decision {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  title       String
+  description String?
+  urgency     String
+  financialImpact Float
+  timeHorizon Int
+  reversibility String
+  emotionalPressure Int
+  informationAvailable Int
+  
+  recommendation String  // action, patience, monitor
+  actionScore Int
+  patienceScore Int
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+}
+
+// Investment Scenarios
+model Investment {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name        String
+  initialInvestment Float
+  monthlyContribution Float
+  annualReturn Float
+  years       Int
+  
+  finalBalance Float
+  totalContributions Float
+  totalEarnings Float
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([userId])
+}

@@ -1,40 +1,108 @@
 import React from 'react';
+import Link from 'next/link';
 import Hero from './components/Hero';
+import PhilosophySection from '@/components/PhilosophySection';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Calculator, DollarSign, Users, ArrowRight, Zap } from 'lucide-react';
 
 export default function Home() {
+  const features = [
+    {
+      icon: Calculator,
+      title: 'Freedom Calculator',
+      description: 'Personalize your path to financial independence with actionable steps and clear milestones.',
+      href: '/tools',
+      cta: 'Use Now',
+    },
+    {
+      icon: DollarSign,
+      title: 'Practical Tools',
+      description: 'Budgeting, debt reduction, and investment tools designed for real results.',
+      href: '/tools',
+      cta: 'Explore Tools',
+    },
+    {
+      icon: Users,
+      title: 'Training & Community',
+      description: 'Workshops, courses, and a supportive network to keep you motivated and accountable.',
+      href: '/training',
+      cta: 'See Training',
+    },
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-100 to-white flex flex-col items-center justify-center px-4">
-      <Hero />
+    <main className="min-h-screen">
+      <div className="flex flex-col items-center justify-center px-4">
+        <Hero />
+      </div>
+
+      {/* Philosophy Section */}
+      <PhilosophySection />
+
+      {/* 30-Day Challenge Banner */}
+      <section className="w-full max-w-6xl mx-auto px-4 mb-12">
+        <Card className="bg-gradient-to-r from-red-600 to-orange-600 border-0 text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400 rounded-full opacity-10 -mr-32 -mt-32" />
+          <CardHeader className="relative z-10 pb-2">
+            <Badge className="w-fit bg-yellow-400 text-yellow-900 hover:bg-yellow-400">
+              <Zap className="h-3 w-3 mr-1" />
+              TAKE ACTION NOW
+            </Badge>
+            <CardTitle className="text-3xl md:text-4xl font-bold text-white">
+              30-Day Financial Freedom Challenge
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10">
+            <CardDescription className="text-xl text-white/90 mb-6">
+              Transform your financial life in just 30 days. Every day you wait costs you money.
+              Start TODAY with Dr. Moore&apos;s proven daily action steps!
+            </CardDescription>
+            <Button size="lg" variant="secondary" className="font-bold" asChild>
+              <Link href="/challenge">
+                START CHALLENGE NOW
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </section>
 
       {/* Highlighted Features */}
-      <section className="w-full max-w-4xl grid md:grid-cols-3 gap-8 mb-20">
-        <div className="bg-white rounded-xl shadow p-8 flex flex-col items-center">
-          <svg className="h-12 w-12 text-blue-700 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
-          <h3 className="text-xl font-bold mb-2 text-blue-900">Freedom Calculator</h3>
-          <p className="text-gray-700">Personalize your path to financial independence with actionable steps and clear milestones.</p>
-          <a href="/tools" className="mt-4 text-blue-700 font-semibold hover:underline">Use Now →</a>
-        </div>
-        <div className="bg-white rounded-xl shadow p-8 flex flex-col items-center">
-          <svg className="h-12 w-12 text-green-600 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <h3 className="text-xl font-bold mb-2 text-blue-900">Practical Tools</h3>
-          <p className="text-gray-700">Budgeting, debt reduction, and investment tools designed for real results.</p>
-          <a href="/tools" className="mt-4 text-blue-700 font-semibold hover:underline">Explore Tools →</a>
-        </div>
-        <div className="bg-white rounded-xl shadow p-8 flex flex-col items-center">
-          <svg className="h-12 w-12 text-yellow-500 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0zM7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857" /></svg>
-          <h3 className="text-xl font-bold mb-2 text-blue-900">Training & Community</h3>
-          <p className="text-gray-700">Workshops, courses, and a supportive network to keep you motivated and accountable.</p>
-          <a href="/training" className="mt-4 text-blue-700 font-semibold hover:underline">See Training →</a>
+      <section className="w-full max-w-6xl mx-auto px-4 mb-20">
+        <div className="grid md:grid-cols-3 gap-6">
+          {features.map((feature) => (
+            <Card key={feature.title} className="text-center">
+              <CardHeader>
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                  <feature.icon className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle>{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <CardDescription>{feature.description}</CardDescription>
+                <Button variant="link" asChild>
+                  <Link href={feature.href}>
+                    {feature.cta}
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="w-full max-w-2xl text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-blue-800 mb-4">Start Your Journey Today</h2>
-        <p className="text-lg text-gray-700 mb-6">
+      <section className="w-full max-w-2xl mx-auto text-center px-4 mb-16">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">Start Your Journey Today</h2>
+        <p className="text-lg text-muted-foreground mb-6">
           Take the first step toward financial freedom with Dr. Moore&apos;s proven tools and educational resources.
         </p>
-        <a href="/contact" className="inline-block bg-yellow-400 text-yellow-900 px-8 py-3 rounded-lg font-bold shadow hover:bg-yellow-300 transition text-lg">Contact Dr. Moore</a>
+        <Button size="lg" asChild>
+          <Link href="/contact">Contact Dr. Moore</Link>
+        </Button>
       </section>
     </main>
   );
