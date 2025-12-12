@@ -1,17 +1,11 @@
-import createMiddleware from 'next-intl/middleware';
+// Middleware disabled - using server-side i18n without locale routing
+// import createMiddleware from 'next-intl/middleware';
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'es'],
-
-  // Used when no locale matches
-  defaultLocale: 'en',
-  
-  // Prefix the default locale
-  localePrefix: 'as-needed'
-});
+export function middleware() {
+  // Pass through - no locale routing needed
+}
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(es|en)/:path*']
+  // Don't match any routes - effectively disabling middleware
+  matcher: []
 };

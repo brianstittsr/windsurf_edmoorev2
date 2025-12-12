@@ -2,9 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -29,65 +27,62 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t bg-muted/40">
+    <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="col-span-1 md:col-span-2 space-y-4">
-            <h3 className="text-xl font-bold tracking-tight">Dr. Edmund Moore</h3>
-            <p className="text-muted-foreground">
+          <div className="col-span-1 md:col-span-2">
+            <h3 className="text-xl font-bold mb-4">Dr. Edmund Moore</h3>
+            <p className="text-gray-400 mb-4">
               Empowering families, individuals, and communities through knowledge, discipline, and legacy-building tools.
             </p>
-            <p className="italic text-muted-foreground">
-              &quot;Doing Nothing is an Option.&quot; – Dr. Edmund Moore
+            <p className="italic text-gray-400">
+              &quot;Doing Nothing is an Option.&quot;
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold">Quick Links</h4>
+          <div>
+            <h4 className="font-semibold mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-2">
               {quickLinks.map((link) => (
-                <Button key={link.href} variant="link" className="h-auto p-0 justify-start text-muted-foreground hover:text-foreground" asChild>
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                <Link key={link.href} href={link.href} className="text-gray-400 hover:text-white transition">
+                  {link.label}
+                </Link>
               ))}
             </nav>
           </div>
 
           {/* Contact */}
-          <div className="space-y-4">
-            <h4 className="font-semibold">Contact</h4>
+          <div>
+            <h4 className="font-semibold mb-4">Contact</h4>
             <nav className="flex flex-col gap-2">
               {contactLinks.map((link) => (
-                <Button key={link.href} variant="link" className="h-auto p-0 justify-start text-muted-foreground hover:text-foreground" asChild>
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                <Link key={link.href} href={link.href} className="text-gray-400 hover:text-white transition">
+                  {link.label}
+                </Link>
               ))}
-              <Button variant="link" className="h-auto p-0 justify-start text-muted-foreground hover:text-foreground" asChild>
-                <a href="mailto:info@edmundmoore.com">
-                  <Mail className="h-4 w-4 mr-2" />
-                  info@edmundmoore.com
-                </a>
-              </Button>
+              <a href="mailto:info@edmundmoore.com" className="text-gray-400 hover:text-white transition">
+                info@edmundmoore.com
+              </a>
             </nav>
           </div>
         </div>
 
-        <Separator className="my-8" />
-
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm">
             &copy; {currentYear} Dr. Edmund Moore. All rights reserved.
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-4">
             {socialLinks.map((social) => (
-              <Button key={social.label} variant="ghost" size="icon" asChild>
-                <a href={social.href} aria-label={social.label}>
-                  <social.icon className="h-5 w-5" />
-                </a>
-              </Button>
+              <a 
+                key={social.label} 
+                href={social.href} 
+                aria-label={social.label}
+                className="text-gray-400 hover:text-white transition"
+              >
+                <social.icon className="h-5 w-5" />
+              </a>
             ))}
           </div>
         </div>
